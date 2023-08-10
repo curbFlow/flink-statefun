@@ -62,13 +62,7 @@ import org.apache.flink.metrics.Meter;
 import org.apache.flink.metrics.MetricGroup;
 import org.apache.flink.metrics.SimpleCounter;
 import org.apache.flink.metrics.groups.OperatorMetricGroup;
-import org.apache.flink.runtime.state.KeyGroupedInternalPriorityQueue;
-import org.apache.flink.runtime.state.Keyed;
-import org.apache.flink.runtime.state.KeyedStateBackend;
-import org.apache.flink.runtime.state.KeyedStateFunction;
-import org.apache.flink.runtime.state.PriorityComparable;
-import org.apache.flink.runtime.state.StateSnapshotTransformer.StateSnapshotTransformFactory;
-import org.apache.flink.runtime.state.VoidNamespace;
+import org.apache.flink.runtime.state.*;
 import org.apache.flink.runtime.state.heap.HeapPriorityQueueElement;
 import org.apache.flink.runtime.state.internal.InternalListState;
 import org.apache.flink.shaded.guava30.com.google.common.util.concurrent.MoreExecutors;
@@ -87,6 +81,7 @@ import org.apache.flink.streaming.runtime.streamrecord.StreamRecord;
 import org.apache.flink.streaming.runtime.watermarkstatus.WatermarkStatus;
 import org.apache.flink.util.OutputTag;
 import org.apache.flink.util.function.BiConsumerWithException;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
 public class ReductionsTest {
@@ -350,12 +345,15 @@ public class ReductionsTest {
       return false;
     }
 
-    @Nonnull
+    @NotNull
     @Override
-    public <N, SV, SEV, S extends State, IS extends S> IS createInternalState(
-        @Nonnull TypeSerializer<N> namespaceSerializer,
-        @Nonnull StateDescriptor<S, SV> stateDesc,
-        @Nonnull StateSnapshotTransformFactory<SEV> snapshotTransformFactory) {
+    public <N, SV, SEV, S extends State, IS extends S> IS createOrUpdateInternalState(
+        @NotNull TypeSerializer<N> typeSerializer,
+        @NotNull StateDescriptor<S, SV> stateDescriptor,
+        @NotNull
+            StateSnapshotTransformer.StateSnapshotTransformFactory<SEV>
+                stateSnapshotTransformFactory)
+        throws Exception {
       throw new UnsupportedOperationException();
     }
 
