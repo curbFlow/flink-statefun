@@ -1,0 +1,11 @@
+README.md
+setup.py
+showcase/__init__.py
+showcase/__main__.py
+showcase/showcase_custom_types.py
+showcase/showcase_custom_types_pb2.py
+showcase.egg-info/PKG-INFO
+showcase.egg-info/SOURCES.txt
+showcase.egg-info/dependency_links.txt
+showcase.egg-info/requires.txt
+showcase.egg-info/top_level.txt

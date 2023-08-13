@@ -1,0 +1,8 @@
+*
+!playground/javascript/greeter
+!playground/javascript/prepare-build.sh
+!statefun-sdk-js
+
+.idea
+venv/
+checkpoint-dir/

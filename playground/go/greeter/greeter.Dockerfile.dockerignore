@@ -1,0 +1,8 @@
+*
+!playground/go/greeter
+!playground/go/prepare-build.sh
+!statefun-sdk-go
+
+.idea
+venv/
+checkpoint-dir/

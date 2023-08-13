@@ -1,0 +1,6 @@
+*
+!playground/playground-internal/statefun-playground-entrypoint
+!playground/java/prepare-build.sh
+!pom.xml
+!**/pom.xml
+!**/statefun-*.jar

@@ -1,0 +1,8 @@
+*
+!playground/python/greeter
+!playground/python/prepare-build.sh
+!statefun-sdk-python
+
+.idea
+venv/
+checkpoint-dir/

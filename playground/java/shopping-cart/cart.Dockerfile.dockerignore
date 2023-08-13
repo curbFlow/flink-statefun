@@ -1,0 +1,6 @@
+*
+!playground/java/shopping-cart
+!playground/java/prepare-build.sh
+!pom.xml
+!**/pom.xml
+!**/statefun-*.jar
