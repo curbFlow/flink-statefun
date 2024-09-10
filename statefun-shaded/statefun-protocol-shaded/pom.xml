@@ -23,7 +23,7 @@ under the License.
     <parent>
         <artifactId>statefun-shaded</artifactId>
         <groupId>org.apache.flink</groupId>
-        <version>3.5-ccc-flink19</version>
+        <version>3.5-ccc-flink19-2</version>
     </parent>
 
     <artifactId>statefun-protocol-shaded</artifactId>
@@ -108,6 +108,7 @@ under the License.
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${build-helper-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>

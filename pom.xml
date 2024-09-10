@@ -29,7 +29,7 @@ under the License.
     <artifactId>statefun-parent</artifactId>
     <groupId>org.apache.flink</groupId>
     <name>statefun-parent</name>
-    <version>3.5-ccc-flink19</version>
+    <version>3.5-ccc-flink19-2</version>
     <packaging>pom</packaging>
 
     <url>http://flink.apache.org</url>
@@ -76,17 +76,19 @@ under the License.
         <java.version>1.8</java.version>
         <spotless-maven-plugin.version>1.20.0</spotless-maven-plugin.version>
         <auto-service.version>1.0-rc6</auto-service.version>
-        <protobuf.version>3.7.1</protobuf.version>
+        <protobuf.version>3.25.4</protobuf.version>
         <unixsocket.version>2.3.2</unixsocket.version>
         <protoc-jar-maven-plugin.version>3.11.1</protoc-jar-maven-plugin.version>
-        <flink.version>1.19.1-ccc</flink.version>
-        <flink.connector.kafka.version>3.1.0-1.17</flink.connector.kafka.version>
-        <flink.connector.kinesis.version>4.2.0-1.17</flink.connector.kinesis.version>
+        <flink.version>1.19.1</flink.version>
+        <flink.connector.kafka.version>3.2.0-1.19</flink.connector.kafka.version>
+        <flink.connector.kinesis.version>4.3.0-1.19</flink.connector.kinesis.version>
         <lz4-java.version>1.8.0</lz4-java.version>
         <flink-shaded-jackson.version>2.14.2-17.0</flink-shaded-jackson.version>
         <slf4j-log4j12.version>1.7.36</slf4j-log4j12.version>
         <test.unit.pattern>**/*Test.*</test.unit.pattern>
         <junit.version>4.13.2</junit.version>
+        <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
+        <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
     </properties>
 
     <dependencies>
@@ -161,22 +163,10 @@ under the License.
                 flink-core:1.19.1 and flink-runtime:1.19.1 depends on commons-io:2.15.1
                 flink-connector-kinesis:4.2.0-1.17 depends on commons-io:2.11.0
             -->
-            <dependency>
+            <!--dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>2.15.1</version>
-            </dependency>
-
-            <!-- TODO: REMOVE only for 1.17 -->
-            <!--dependency>
-                <groupId>org.apache.flink</groupId>
-                <artifactId>flink-shaded-netty</artifactId>
-                <version>4.1.91.Final-17.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.flink</groupId>
-                <artifactId>flink-shaded-jackson</artifactId>
-                <version>2.14.2-17.0</version>
             </dependency-->
 
         </dependencies>
@@ -198,6 +188,7 @@ under the License.
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-assembly-plugin</artifactId>
+                        <version>${maven-assembly-plugin.version}</version>
                         <dependencies>
                             <!--dependency>
                                 <groupId>org.apache.apache.resources</groupId>

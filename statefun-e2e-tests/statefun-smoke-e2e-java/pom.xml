@@ -21,7 +21,7 @@ under the License.
     <parent>
         <groupId>org.apache.flink</groupId>
         <artifactId>statefun-smoke-e2e-multilang-base</artifactId>
-        <version>3.5-ccc-flink19</version>
+        <version>3.5-ccc-flink19-2</version>
         <relativePath>../statefun-smoke-e2e-multilang-base/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -83,7 +83,7 @@ under the License.
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>${maven-assembly-plugin.version}</version>
                 <configuration>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>

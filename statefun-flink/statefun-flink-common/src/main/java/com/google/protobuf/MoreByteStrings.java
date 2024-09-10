@@ -21,16 +21,47 @@ import java.nio.ByteBuffer;
 
 public class MoreByteStrings {
 
+  private static final java.lang.reflect.Method wrapAllBytes;
+  private static final java.lang.reflect.Method wrapBytes;
+  private static final java.lang.reflect.Method wrapByteBuffer;
+
+  static {
+    try {
+      final var classLoader = MoreByteStrings.class.getClassLoader();
+      final var byteStringClass = classLoader.loadClass("com.google.protobuf.ByteString");
+      wrapAllBytes = byteStringClass.getDeclaredMethod("wrap", byte[].class);
+      wrapAllBytes.setAccessible(true);
+      wrapBytes = byteStringClass.getDeclaredMethod("wrap", byte[].class, int.class, int.class);
+      wrapBytes.setAccessible(true);
+      wrapByteBuffer = byteStringClass.getDeclaredMethod("wrap", ByteBuffer.class);
+      wrapByteBuffer.setAccessible(true);
+    } catch (ReflectiveOperationException e) {
+      throw new ExceptionInInitializerError(e);
+    }
+  }
+
+  private static interface ReflectiveSupplier<T> {
+    T get() throws ReflectiveOperationException;
+  }
+
+  private static <T> T safeInvoke(ReflectiveSupplier<T> supplier) {
+    try {
+      return supplier.get();
+    } catch (ReflectiveOperationException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   public static ByteString wrap(byte[] bytes) {
-    return ByteString.wrap(bytes);
+    return safeInvoke(() -> (ByteString) wrapAllBytes.invoke(null, (Object) bytes));
   }
 
   public static ByteString wrap(byte[] bytes, int offset, int len) {
-    return ByteString.wrap(bytes, offset, len);
+    return safeInvoke(() -> (ByteString) wrapBytes.invoke(null, (Object) bytes, offset, len));
   }
 
   public static ByteString wrap(ByteBuffer buffer) {
-    return ByteString.wrap(buffer);
+    return safeInvoke(() -> (ByteString) wrapByteBuffer.invoke(null, buffer));
   }
 
   public static ByteString concat(ByteString first, ByteString second) {
