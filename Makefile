@@ -6,3 +6,4 @@ publish-streaming-artifacts:
 	cp ./statefun-flink/statefun-flink-distribution/target/statefun-flink-distribution-3.5-ccc-flink19-2.jar ./streaming-artifacts
 	git add -f streaming-artifacts/*
 	git commit -a -m "rebuilt and published streaming artifacts"
+	git push
